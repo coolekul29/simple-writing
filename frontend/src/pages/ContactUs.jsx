@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "../styles/contactus.css";
+import API_BASE from "../config"; // adjust path if needed
 
 export default function ContactUs() {
   const [name, setName] = useState("");
@@ -26,7 +27,7 @@ export default function ContactUs() {
     setSubmitted(false);
 
     try {
-      const res = await fetch("http://localhost:5000/api/contact", {
+      const res = await fetch(`${API_BASE}/api/contact`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

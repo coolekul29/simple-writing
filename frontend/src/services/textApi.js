@@ -1,6 +1,8 @@
+import API_BASE from "../config";
+
 // Call backend /api/rewrite
 export async function rewriteTextOnServer(text) {
-  const response = await fetch("http://localhost:5000/api/rewrite", {
+  const response = await fetch(`${API_BASE}/api/rewrite`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ text })
@@ -17,7 +19,7 @@ export async function rewriteTextOnServer(text) {
 
 // Call backend /api/simplify
 export async function simplifyTextOnServer(text) {
-  const response = await fetch("http://localhost:5000/api/simplify", {
+  const response = await fetch(`${API_BASE}/api/simplify`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ text })
