@@ -1,0 +1,72 @@
+/* 
+dark-bg - #194049
+dark-panel- #F6F8F0
+dark-highlight - #a3cdcf
+text-colour - #ffffff
+light-bg - #F6F8F0
+light-panel - #194049
+light-highlight - #3c6e71
+
+light - the logo colour is #284b63 and the background colour of the log is #d9d9d9
+dark - the logo colour is #ffffff and the background colour is #3c6e71
+*/
+
+
+/* Main Theme Colours / Variables. These can be reused with var(--name) */
+:root {
+
+    /* ==== Dark Theme ==== */
+    --dark-bg: #194049;
+    --dark-panel: #F6F8F0;    
+    --dark-highlight: #a3cdcf;
+    --dark-text: #ffffff;
+    --dark-hover-text:#a3cdcf;
+    --dark-highlight-item: #00ffff;
+
+    /* ==== Light Theme ==== */
+    --light-bg: #c8cac8;
+    --light-panel:#194049;
+    --light-highlight: #3c6e71;
+    --light-text: #194049;
+    --light-hover-text:#a3cdcf;
+    --light-highlight-item: #3c6e71;
+}
+
+/* Reset margin and padding for all elements */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Default section style for pages */
+section {
+  min-height: 88vh;
+  padding: 2rem 5% 2rem;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Set main font for the whole site */
+html, body {
+    font-family: 'Roboto', sans-serif;
+}
+
+/* App Wrapper + Theme. This holds the whole app and switches light/dark */
+.app-shell {
+  width: 100vw;
+  min-height: 100vh;
+  transition: background-color 0.5s, color 0.5s; 
+}
+
+/* Light theme */
+.app-shell.light {
+  background: var(--dark-bg);
+  color: var(--dark-text);
+}
+
+/* Dark theme */
+.app-shell.dark {
+  background: var(--light-bg);
+  color: var(--light-text);
+}

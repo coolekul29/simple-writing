@@ -1,0 +1,71 @@
+/* Navbar + Footer. Top bar and bottom bar style */
+.navbar {
+    display: flex;               
+    align-items: center;         
+    justify-content: space-between; 
+    padding: 12px 5%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    height: 80px;               
+}
+
+/* small drop shadow under navbar */
+.navbar {
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+}
+
+/* Logo image in the header */
+.logo {
+    height: 80px;
+    cursor: pointer;
+}
+
+/* Make logo grow a bit when hovered */
+.logo:hover {
+    transform: scale(1.2);
+}
+
+/* Links in the navbar (Home, About, etc.) */
+.nav-links {
+    flex: 1;
+    display: flex;
+    justify-content: center;  
+    gap: 40px;                
+}
+
+.nav-links a {
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s;
+    color: var(--dark-text);
+}
+
+/* Hover effect on nav links */
+.nav-links a:hover {
+    color: var(--dark-hover-text);
+    transform: scale(1.05);
+}
+
+.dark .nav-links a{
+    color: var(--light-text);
+}
+
+.dark .nav-links a:hover {
+    color: var(--light-hover-text);
+    transform: scale(1.05);
+}
+
+/* Theme toggle icon (sun/moon) */
+.toggle_icon {
+    margin-left: 20px;
+    height: 35px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+/* Spin a bit when hovered */
+.toggle_icon:hover {
+    transform: rotate(50deg);
+}
