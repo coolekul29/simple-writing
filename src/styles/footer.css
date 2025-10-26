@@ -1,0 +1,19 @@
+.footer{
+    display: flex;               
+    align-items: center;         
+    justify-content: space-between; 
+    padding: 12px 5%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    height: 10px;
+    text-align: center;
+    font-size: 12px;
+}
+
+.col{
+    gap: 12px;
+    display: flex;
+    justify-content: center 
+}
