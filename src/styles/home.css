@@ -1,0 +1,267 @@
+.home{
+    text-align: center;
+    align-items: center;
+}
+
+.home-inner{
+    padding: 0 10px 10px;
+}
+
+.home-div{
+    padding: 10px;
+}
+
+.home-top-text h4{
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 8px 18px;
+    border-radius: 999px;
+    background-color: var(--dark-highlight-item);
+  
+    background: linear-gradient(90deg, #ff6b6b, #feca57, #1dd1a1);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent; /* fallback */
+
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4); /* optional subtle shadow */
+    margin: 0 auto;
+}
+
+.light .home-top-text h4{
+    background-color: var(--light-highlight-item);
+}
+
+.home-sub-text p{
+    font-size: 0.8rem;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+.home-try-button button{
+    padding: 15px;
+    padding-left: 80px;
+    padding-right: 80px;
+    border-radius: 25px;
+    background-color: var(--dark-highlight-item);
+    color: var(--light-text);
+    cursor: pointer;
+    border: none;
+}
+
+.dark .home-try-button button{
+    background-color: var(--light-highlight-item);
+    color: var(--dark-text);
+}
+
+.home-bottom-text p{
+    font-size: 12px;    
+}
+
+/* the white card */
+.home-card {
+  background-color: var(--dark-highlight);
+  border-radius: 8px;
+  width: 100%;
+  max-width: 1150px;
+  min-height: 300px;
+
+  border: 1px solid rgba(0,0,0,0.07);
+  box-shadow: 0 16px 32px rgba(0,0,0,0.08);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+.dark .home-card{
+    background-color: var(--light-highlight);
+}
+
+/* top row: "Your Text" on left, mode selector on right */
+.home-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  font-size: 14px;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin-bottom: 16px;
+}
+
+.dark .home-card-header, .dark .home-card-mode, .dark .text-input{
+    color: var(--dark-text);
+}
+
+.home-card-mode {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 500;
+  font-size: 14px;
+  color: #2f3a41; /* muted dark grey/blue */
+}
+
+/* middle area (textarea region look) */
+.home-card-body {
+  position: relative;           /* so we can absolutely center the paste button */
+  flex: 1;
+  border: 1px solid rgba(0,0,0,0.06);
+  border-radius: 6px;
+  min-height: 250px;
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* TEXTAREA STYLES */
+.text-input {
+  width: 100%;
+  height: 280px;                /* you can adjust */
+  resize: none;                 /* prevent manual drag resize */
+  border: none;
+  outline: none;
+  font-size: 14px;
+  line-height: 1.4;
+  color: #1a1a1a;
+  font-family: inherit;
+  background-color: transparent;
+  /* placeholder color handled below */
+}
+
+.text-input::placeholder {
+  color: #6b7a89;
+  opacity: 1;
+}
+
+.dark .text-input::placeholder{
+    color: var(--light-hover-text);
+}
+
+/* paste button in the middle */
+.paste-btn {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+
+  background-color: #ffffff;
+  border: 1px solid #28c76f;
+  color: #28c76f;
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: 24px;
+  padding: 10px 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.paste-btn i {
+  font-size: 14px;
+}
+
+/* hide the Paste button once user starts typing (optional enhancement) */
+.text-input:not(:placeholder-shown) + .paste-btn {
+  display: none;
+}
+
+/* bottom row of card */
+.home-card-footer {
+  margin-top: 16px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  font-size: 13px;
+  color: #4a5563;
+  position: relative;
+}
+
+.word-count {
+  color: #4a5563;
+}
+
+.dark .word-count{
+    color: var(--light-hover-text);
+}
+
+/* right side actions */
+.footer-actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.check-btn {
+  background-color: rgba(40, 199, 111, 0.08); /* pale green fill */
+  border: 1px solid rgba(40, 199, 111, 0.3);
+  border-radius: 6px;
+  padding: 10px 14px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #2e7d32;
+  cursor: pointer;
+}
+
+.check-btn[disabled] {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.dark .check-btn{
+  background-color: var(--dark-highlight);
+}
+
+.min-warning{
+    color: #ff6b6b;
+}
+
+.simplify-btn {
+  background-color: var(--light-highlight);
+  border: 1px solid var(--light-panel);
+  color: #ffffff;
+  border-radius: 6px;
+  padding: 10px 14px;
+  font-size: 14px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+}
+
+.dark .simplify-btn{
+  background-color: var(--dark-highlight-item);
+  color: var(--light-text);
+}
+
+.simplify-btn i {
+  font-size: 14px;
+}
+
+/* responsive tweak: stack footer buttons below word count on narrow screens */
+@media (max-width: 600px) {
+  .home-card-footer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .footer-actions {
+    width: 100%;
+    flex-wrap: wrap;
+  }
+
+  .footer-actions button {
+    flex: 1;
+    text-align: center;
+  }
+}
