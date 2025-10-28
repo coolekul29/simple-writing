@@ -54,8 +54,24 @@
 }
 
 .dark .home-try-button button{
-    background-color: var(--light-highlight-item);
-    color: var(--dark-text);
+    filter: brightness(1.05);
+    background-color: var(--dark-highlight-item);
+    color: var(--light-text);
+    border: 1px solid var(--light-highlight-item);
+}
+
+.home-try-button button:hover{
+  filter: brightness(1.05);
+  background-color: var(--light-highlight-item);
+  color: var(--dark-text);
+  border: 1px solid var(--dark-highlight-item);
+}
+
+.dark .home-try-button button:hover{
+  filter: brightness(1.05);
+  background-color: var(--light-panel);
+  color: var(--dark-text);
+  border: 1px solid var(--dark-highlight-item);
 }
 
 .home-bottom-text p{
