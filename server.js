@@ -32,7 +32,7 @@ app.post("/api/rewrite", async (req, res) => {
         "X-Title": "Simple Writing Dev",
       },
       body: JSON.stringify({
-        model: "minimax/minimax-m2:free",
+        model: process.env.MODEL_REWRITE,
         messages: [
           {
             role: "user",
@@ -106,7 +106,7 @@ app.post("/api/simplify", async (req, res) => {
         "X-Title": "Simple Writing Dev",
       },
       body: JSON.stringify({
-        model: "minimax/minimax-m2:free",
+        model: Process.env.MODEL_SIMPLIFY,
         messages: [
           {
             role: "user",
