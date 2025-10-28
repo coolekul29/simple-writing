@@ -8,18 +8,14 @@
     top: 0;
     left: 0;
     z-index: 10;
-    height: 80px;               
+    height: 80px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);               
 }
-
-/* small drop shadow under navbar */
-.navbar {
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
-}
-
 /* Logo image in the header */
 .logo {
     height: 80px;
     cursor: pointer;
+    transition: transform 0.2s ease;
 }
 
 /* Make logo grow a bit when hovered */
@@ -38,7 +34,7 @@
 .nav-links a {
     text-decoration: none;
     font-weight: 500;
-    transition: color 0.3s;
+    transition: all 0.2s ease;
     color: var(--dark-text);
 }
 
@@ -68,4 +64,45 @@
 /* Spin a bit when hovered */
 .toggle_icon:hover {
     transform: rotate(50deg);
+}
+
+.dark .toggle_icon {
+  color: var(--light-text);
+}
+
+.navbar-right{
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.auth-btn {
+  background-color: var(--dark-highlight);
+  border: 1px solid var(--dark-highlight-item);
+  border-radius: 20px;
+  padding: 8px 14px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--light-text);
+  cursor: pointer;
+  line-height: 1.2;
+  transition: all 0.2s ease;
+}
+
+.auth-btn:hover {
+  filter: brightness(1.05);
+  background-color: var(--light-highlight-item-);
+  color: var(--dark-text);
+}
+
+.dark .auth-btn {
+  border-color: var(--light-highlight-item);
+  color: var(--dark-text);
+  background-color: var(--light-highlight-item);
+}
+
+.dark .auth-btn:hover {
+    filter: brightness(1.05);
+    background-color: var(--dark-highlight-item-);
+    color: var(--light-text);
 }
