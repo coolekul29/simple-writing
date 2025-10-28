@@ -6,9 +6,9 @@ import toggle_icon_light from "../assets/night.png";
 import toggle_icon_dark from "../assets/day.png";
 import "../styles/header.css";
 
-const Header = ({ theme, setTheme }) => {
+const Header = ({ theme, setTheme, isAuthed, onAuthClick }) => {
   const toggle_mode = () => {
-    theme === "light" ? setTheme("dark") : setTheme("light");
+    setTheme(theme === "light" ? "dark" : "light");
   };
 
   return (
@@ -23,15 +23,23 @@ const Header = ({ theme, setTheme }) => {
         <NavLink to="/">Home</NavLink>
         <NavLink to="/about">About</NavLink>
         <NavLink to="/contactUs">Contact Us</NavLink>
+        <NavLink to="/pricing">Pricing</NavLink>
       </nav>
 
-      <div className="toggle-icon">
+      <div className="navbar-right">
         <img 
           onClick={() => { toggle_mode() }} 
           src={theme === "light" ? toggle_icon_dark : toggle_icon_light} 
           alt="toggle theme" 
           className='toggle_icon'
         />
+
+        <button
+          className="auth-btn"
+          onClick={onAuthClick}
+          >
+            {isAuthed ? "Account": "Sign In"}
+        </button>
       </div>
     </div>
   );
