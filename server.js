@@ -106,7 +106,7 @@ app.post("/api/simplify", async (req, res) => {
         "X-Title": "Simple Writing Dev",
       },
       body: JSON.stringify({
-        model: Process.env.MODEL_SIMPLIFY,
+        model: process.env.MODEL_SIMPLIFY,
         messages: [
           {
             role: "user",
