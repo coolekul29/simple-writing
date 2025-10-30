@@ -196,8 +196,8 @@
 
 /* submit button */
 .contact-submit-btn {
-  background-color: #28c76f;
-  border: 1px solid #28c76f;
+  background-color: var(--button-colour);
+  border: 1px solid var(--button-colour);
   color: #ffffff;
   font-weight: 600;
   font-size: 0.95rem;
@@ -237,7 +237,7 @@
   line-height: 1.4;
   background-color: rgba(255, 107, 107, 0.12);
   border: 1px solid rgba(255, 107, 107, 0.4);
-  color: #ff6b6b;
+  color: var(--error-colour);
   border-radius: 8px;
   padding: 10px 12px;
   margin-bottom: 16px;

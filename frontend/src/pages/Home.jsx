@@ -10,11 +10,23 @@ import {
   limitToMaxWords,
   pasteFromClipboard,
 } from "../services/textUtils";
+import AlertModal from "../components/AlertModal";
 
-export default function Home({ requireAuthBeforeAction }) {
+export default function Home({ requireAuthBeforeAction, profile }) {
   const [text, setText] = useState("");
   const [wordCount, setWordCount] = useState(0);
   const [loading, setLoading] = useState(false);
+  const [alertData, setAlertData] = useState(null);
+
+// pull limits from profile if available, fallback to safe defaults
+const maxWordsAllowed = profile?.max_words_per_input ?? 100;
+const maxDailyRewrites = profile?.rewrite_limit_per_day ?? 10;
+const rewritesUsed = profile?.daily_rewrites_used ?? 0;
+
+// are they allowed to rewrite now?
+const hasRewriteQuota =
+  maxDailyRewrites === -1 || // -1 will represent "unlimited" (tier3)
+  rewritesUsed < maxDailyRewrites;
 
   const MAX_WORDS = 500;
   const MIN_WORDS = 50;
@@ -40,20 +52,47 @@ export default function Home({ requireAuthBeforeAction }) {
       setText(newText);
       setWordCount(count);
     } catch (err) {
-      alert(err.message);
+      setAlertData({
+        title: "Error encountered",
+        message: err.message});
     }
   };
 
   // --- core worker used by both buttons ---
   const runRewrite = async () => {
     if (!text.trim()) {
-      alert("Please paste or type some text first!");
+      setAlertData({
+        title: "Missing Text",
+        message: `Please paste or type some text first before rewriting.`,
+      });
       return;
     }
+
     if (wordCount < MIN_WORDS) {
-      alert(
-        `Please enter at least ${MIN_WORDS} words before generating a professional version.`
-      );
+      setAlertData({
+        title: "Minimum words required",
+        message: `Please enter at least ${MIN_WORDS} words before generating a professional version`
+      });
+      return;
+    }
+
+    // NEW: enforce max words allowed by plan
+    if (wordCount > maxWordsAllowed) {
+      setAlertData({
+        title: "Maximum allowed words",
+        message: `Your current plan only supports up to ${maxWordsAllowed} words at a time.\n ` + 
+        `Please shorten your text or upgrade your plan.`
+      });
+      return;
+    }
+
+    // NEW: enforce daily rewrite limit
+    if (!hasRewriteQuota) {
+      setAlertData({
+        title: "Daily limit reached",
+        message: `You've reached your daily limit of ${maxDailyRewrites} rewrites.\n` + 
+        `Upgrade to Pro for unlimited rewrites.`
+      });
       return;
     }
 
@@ -62,23 +101,39 @@ export default function Home({ requireAuthBeforeAction }) {
       const rewritten = await rewriteTextOnServer(text);
       setText(rewritten);
       setWordCount(countWords(rewritten));
+      // we'll handle incrementing usage later in Step 4
     } catch (err) {
       console.error(err);
-      alert(err.message || "Something went wrong.");
-    } finally {
+      setAlertData({
+        title: "Error encountered",
+        message: err.message || "Something went wrong."});
+      } finally {
       setLoading(false);
     }
   };
 
   const runSimplify = async () => {
     if (!text.trim()) {
-      alert("Please paste or type some text first!");
+      setAlertData({
+        title: "Missing text",
+        message: `Please paste or type some text first!`});
       return;
     }
+
     if (wordCount < MIN_WORDS) {
-      alert(
-        `Please enter at least ${MIN_WORDS} words before simplifying.`
-      );
+      setAlertData({
+        title: "Minimum words required",
+        message: `Please enter at least ${MIN_WORDS} words before simplifying.`
+    });
+      return;
+    }
+
+    if (wordCount > maxWordsAllowed) {
+      setAlertData({
+        title: "Minimum words required",
+        message: `Your current plan only supports up to ${maxWordsAllowed} words at a time.\n` + 
+        `Please shorten your text or upgrade your plan.`
+    });
       return;
     }
 
@@ -89,7 +144,9 @@ export default function Home({ requireAuthBeforeAction }) {
       setWordCount(countWords(simplified));
     } catch (err) {
       console.error(err);
-      alert(err.message || "Something went wrong.");
+      setAlertData({
+        title: "Eror encountered",
+        message: err.message || "Something went wrong."});
     } finally {
       setLoading(false);
     }
@@ -108,7 +165,9 @@ export default function Home({ requireAuthBeforeAction }) {
     // You can decide what Try it Now does.
     // For now let's just also require auth and then focus the textarea.
     requireAuthBeforeAction(() => {
-      alert("You're in. Start typing or paste your text below 👇");
+      setAlertData({
+        title: "Eror encountered",
+        message: "You're in. Start typing or paste your text below 👇"});
       // optional: auto-focus the textarea if you want to get fancy with refs
     });
   };
@@ -128,7 +187,7 @@ export default function Home({ requireAuthBeforeAction }) {
 
         {/* Main headline */}
         <div className="home-main-text home-div">
-          <h1>Simplify your text & make it naturally sound</h1>
+          <h1>Simplify your text & make it sound naturally</h1>
         </div>
 
         {/* Sub text */}
@@ -157,8 +216,6 @@ export default function Home({ requireAuthBeforeAction }) {
             <span>Your Text</span>
             <div className="home-card-mode">
               <i className="fa-solid fa-wand-sparkles"></i>
-              <span>Default</span>
-              <i className="fa-solid fa-chevron-down"></i>
             </div>
           </div>
 
@@ -180,9 +237,9 @@ export default function Home({ requireAuthBeforeAction }) {
           {/* footer row under textarea */}
           <div className="home-card-footer">
             <div className={`word-section ${isTooShort ? "error" : ""}`}>
-              <span className="word-count">
-                {wordCount} / {MAX_WORDS} words
-              </span>
+            <span className="word-count">
+              {wordCount} / {maxWordsAllowed} words
+            </span>
 
               {isTooShort && (
                 <span className="min-warning">
@@ -211,6 +268,14 @@ export default function Home({ requireAuthBeforeAction }) {
           </div>
         </div>
       </div>
+    {alertData && (
+      <AlertModal
+        title={alertData.title}
+        message={alertData.message}
+        actions={alertData.actions}
+        onClose={() => setAlertData(null)}
+      />
+    )}
     </section>
   );
 }
