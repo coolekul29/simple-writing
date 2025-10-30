@@ -1,0 +1,58 @@
+/* Dim + blur background */
+.alert-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.55);
+  backdrop-filter: blur(4px);
+  z-index: 1000;
+}
+
+/* Centered card */
+.alert-card {
+  position: fixed;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: min(92vw, 520px);
+  background: #153b3f;               /* matches your theme */
+  color: var(--light-text);
+  border: 1px solid rgba(255,255,255,.15);
+  border-radius: 12px;
+  box-shadow: 0 24px 60px rgba(0,0,0,.45);
+  padding: 18px 18px 16px;
+  z-index: 1001;
+  font-family: inherit;
+}
+
+/* Header */
+.alert-header {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 8px;
+}
+.alert-header h3 {
+  font-size: 1.05rem; margin: 0; font-weight: 600;
+}
+
+/* Close (X) */
+.alert-close {
+  background: transparent; border: 0; color: var(--light-text);
+  font-size: 1rem; cursor: pointer; line-height: 1; padding: 4px;
+}
+
+/* Body */
+.alert-body p { 
+  margin: 0; 
+  color: rgba(255,255,255,.9);
+  line-height: 1.45;
+}
+
+/* Actions */
+.alert-actions {
+  display: flex; justify-content: flex-end; gap: 10px; margin-top: 16px;
+}
+.alert-btn {
+  border: 0; border-radius: 8px; padding: 10px 14px; font-weight: 600; cursor: pointer;
+}
+.alert-btn.primary { background: var(--brand); color: #fff; }
+.alert-btn.primary:hover { filter: brightness(1.08); }
+.alert-btn.ghost { background: transparent; color: var(--light-text); border: 1px solid rgba(255,255,255,.25); }
+.alert-btn.ghost:hover { background: rgba(255,255,255,.06); }
