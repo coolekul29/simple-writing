@@ -30,6 +30,9 @@ dark - the logo colour is #ffffff and the background colour is #3c6e71
     --light-text: #194049;
     --light-hover-text:#a3cdcf;
     --light-highlight-item: #3c6e71;
+
+    --button-colour: #28c76f;
+    --error-colour: #ff6b6b;
 }
 
 /* Reset margin and padding for all elements */

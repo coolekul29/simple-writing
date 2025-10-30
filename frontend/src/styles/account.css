@@ -1,0 +1,161 @@
+.account.container { 
+    padding-top: 32px; 
+    padding-bottom: 48px; 
+}
+
+.account-header {
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.account-header h1 { 
+    margin: 0 0 4px 0; 
+}
+
+.account-header .sub { 
+    opacity: .85; 
+}
+
+.plan-badge {
+  padding: 6px 12px; 
+  border-radius: 999px; 
+  font-weight: 700; 
+  font-size: .9rem;
+  border: 1px solid rgba(255,255,255,.18);
+}
+
+.plan-badge.free, .plan-badge.starter, .plan-badge.pro { 
+    background: var(--dark-highlight); 
+    color: var(--light-text); 
+}
+
+.dark .plan-badge.free, .dark .plan-badge.starter, .dark .plan-badge.pro {
+    background: var(--light-highlight); 
+    color: var(--dark-text); 
+}
+
+.account-grid {
+  display: grid; 
+  gap: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+.account-card {
+  background: var(--dark-bg); ; 
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 16px; 
+  padding: 18px;
+  box-shadow: 0 8px 28px rgba(0,0,0,.25);
+}
+
+.dark .account-card {
+  background: var(--light-highlight); ; 
+  color: var(--light-bg);
+}
+
+.account-card h2 { 
+    margin-top: 0; 
+    margin-bottom: 12px; 
+}
+
+.kv { 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    padding: 8px 0; 
+    border-bottom: 1px dashed rgba(255,255,255,.08); 
+}
+
+.kv:last-child { 
+    border-bottom: 0; 
+}
+
+.kv span { 
+    opacity: .85; 
+}
+
+.kv strong { 
+    font-weight: 700; 
+}
+
+.status.active { 
+    color: var(--button-colour); ; 
+}
+
+.usage-top { 
+    display: flex; 
+    gap: 16px; 
+    margin-bottom: 10px; 
+}
+
+.usage-stat { 
+    flex: 1; 
+    background: rgba(255,255,255,.06); 
+    border: 1px solid rgba(255,255,255,.08); 
+    border-radius: 10px; 
+    padding: 10px; 
+    text-align: center; 
+}
+
+.usage-stat span { 
+    display: block; 
+    font-size: .85rem; 
+    opacity: .85; 
+    margin-bottom: 4px; 
+}
+
+.progress { 
+    width: 100%; 
+    height: 10px; 
+    background: rgba(255,255,255,.08); 
+    border-radius: 999px; 
+    overflow: hidden; 
+}
+
+.progress-bar { 
+    height: 100%; 
+    background: var(--button-colour); 
+}
+
+.mt { 
+    margin-top: 12px; 
+}
+
+.muted { 
+    opacity: .85; 
+}
+
+.actions { 
+    display: flex; 
+    gap: 10px; 
+    margin-top: 8px; 
+}
+
+.btn { 
+    border-radius: 10px; 
+    padding: 10px 14px; 
+    font-weight: 700; 
+    cursor: pointer; 
+    border: 1px solid transparent; 
+}
+
+.btn.primary { 
+    background: var(--button-colour); 
+    color: var(--dark-text); ; 
+}
+
+.btn.primary:hover { 
+    filter: brightness(1.08); 
+}
+
+.btn.ghost { 
+    background: transparent; 
+    border-color: rgba(255,255,255,.25); 
+    color: var(--light-bg); 
+}
+
+.btn.ghost:hover { 
+    background: rgba(255,255,255,.06); 
+}
