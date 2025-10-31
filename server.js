@@ -3,7 +3,34 @@ const cors = require("cors");
 require("dotenv").config();
 
 const app = express();
-app.use(cors());
+
+/** Allow Netlify site + localhost to call the API */
+const allowedOrigins = [
+  "http://localhost:3000",
+  "https://simplewriting.netlify.app",   // <-- your Netlify site URL
+];
+
+
+/** CORS middleware (handles both preflight and actual requests) */
+const corsOptions = {
+  origin(origin, callback) {
+    // allow server-to-server / curl (no Origin) and whitelisted origins
+    if (!origin || allowedOrigins.includes(origin)) {
+      return callback(null, true);
+    }
+    return callback(new Error("Not allowed by CORS"));
+  },
+  methods: ["GET", "POST", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+  credentials: false, // set to true only if you send cookies
+};
+
+
+app.use(cors(corsOptions));
+
+/** Explicitly answer ALL preflights */
+app.options("*", cors(corsOptions));
+
 app.use(express.json());
 
 // pull key from .env
